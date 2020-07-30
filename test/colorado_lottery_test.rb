@@ -49,4 +49,10 @@ class ColoradoLotteryTest < MiniTest::Test
     assert_equal [], @lottery.winners
     assert_equal ({}), @lottery.current_contestants
   end
+
+  def test_it_can_see_if_a_contestant_is_interested_and_18
+    assert @lottery.interested_and_18?(@alexander, @pick_4)
+    refute @lottery.interested_and_18?(@benjamin, @mega_millions)
+    refute @lottery.interested_and_18?(@alexander, @cash_5)
+  end
 end
