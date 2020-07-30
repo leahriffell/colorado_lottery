@@ -55,4 +55,12 @@ class ColoradoLotteryTest < MiniTest::Test
     refute @lottery.interested_and_18?(@benjamin, @mega_millions)
     refute @lottery.interested_and_18?(@alexander, @cash_5)
   end
+
+  def test_it_can_see_if_a_contestant_can_register
+    assert @lottery.can_register?(@alexander, @pick_4)
+    refute @lottery.can_register?(@alexander, @cash_5)
+    assert @lottery.can_register?(@frederick, @mega_millions)
+    refute @lottery.can_register?(@benjamin, @mega_millions)
+    refute @lottery.can_register?(@frederick, @cash_5)
+  end
 end
