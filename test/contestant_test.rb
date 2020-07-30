@@ -27,4 +27,12 @@ class ContestantTest < MiniTest::Test
     assert @alexander.out_of_state?
     refute @mimi.out_of_state?
   end
+
+  def test_it_can_add_game_interests
+    assert_equal [], @alexander.game_interests 
+
+    @alexander.add_game_interest('Mega Millions')
+    @alexander.add_game_interest('Pick 4')
+    assert_equal ['Mega Millions', 'Pick 4'], @alexander.game_interests
+  end
 end
