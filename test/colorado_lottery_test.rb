@@ -34,7 +34,7 @@ class ColoradoLotteryTest < MiniTest::Test
                         age: 18,
                         state_of_residence: 'CO',
                         spending_money: 5})
-                        
+
     @alexander.add_game_interest('Pick 4')
     @alexander.add_game_interest('Mega Millions')
     @frederick.add_game_interest('Mega Millions')
@@ -43,7 +43,10 @@ class ColoradoLotteryTest < MiniTest::Test
     @benjamin.add_game_interest('Mega Millions')
   end
 
-  def test_it_exists 
+  def test_it_exists_and_has_readable_attributes
     assert_instance_of ColoradoLottery, @lottery
+    assert_equal ({}), @lottery.registered_contestants
+    assert_equal [], @lottery.winners
+    assert_equal ({}), @lottery.current_contestants
   end
 end
