@@ -35,4 +35,8 @@ class ContestantTest < MiniTest::Test
     @alexander.add_game_interest('Pick 4')
     assert_equal ['Mega Millions', 'Pick 4'], @alexander.game_interests
   end
+
+  def test_it_can_be_charged
+    assert_equal 5, @alexander.charge(5)
+  end
 end
