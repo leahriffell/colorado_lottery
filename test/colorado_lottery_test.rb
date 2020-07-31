@@ -34,6 +34,12 @@ class ColoradoLotteryTest < MiniTest::Test
                         age: 18,
                         state_of_residence: 'CO',
                         spending_money: 5})
+    @grace = Contestant.new({
+                        first_name: 'Grace',
+                        last_name: 'Hopper',
+                        age: 20,
+                        state_of_residence: 'CO',
+                        spending_money: 20})
 
     @alexander.add_game_interest('Pick 4')
     @alexander.add_game_interest('Mega Millions')
@@ -41,6 +47,9 @@ class ColoradoLotteryTest < MiniTest::Test
     @winston.add_game_interest('Cash 5')
     @winston.add_game_interest('Mega Millions')
     @benjamin.add_game_interest('Mega Millions')
+    @grace.add_game_interest('Mega Millions')
+    @grace.add_game_interest('Cash 5')
+    @grace.add_game_interest('Pick 4')
   end
 
   def test_it_exists_and_has_readable_attributes
@@ -75,5 +84,10 @@ class ColoradoLotteryTest < MiniTest::Test
     @lottery.register_contestant(@winston, @cash_5)
     @lottery.register_contestant(@winston, @mega_millions)
     assert_equal ({"Pick 4" => [@alexander], "Mega Millions" => [@alexander, @frederick, @winston], "Cash 5" => [@winston]}), @lottery.registered_contestants
+
+    @lottery.register_contestant(@grace, @mega_millions)
+    @lottery.register_contestant(@grace, @cash_5)
+    @lottery.register_contestant(@grace, @pick_4)
+    assert_equal ({"Pick 4" => [@alexander, @grace], "Mega Millions" => [@alexander, @frederick, @winston, @grace], "Cash 5" => [@winston, @grace]}), @lottery.registered_contestants
   end
 end
