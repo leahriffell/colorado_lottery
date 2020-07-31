@@ -24,8 +24,8 @@ class ContestantTest < MiniTest::Test
   end
 
   def test_if_it_is_an_out_of_state_resident
-    assert @alexander.out_of_state?
-    refute @mimi.out_of_state?
+    refute @alexander.out_of_state?
+    assert @mimi.out_of_state?
   end
 
   def test_it_can_add_game_interests
