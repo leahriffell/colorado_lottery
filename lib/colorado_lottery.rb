@@ -20,4 +20,11 @@ class ColoradoLottery
       @registered_contestants[game.name] << contestant
     end
   end
+
+  def eligible_contestants(game)
+    #instructions differ from interaction pattern (instructions call for moeny > cost but pattern says >= cost)
+    @registered_contestants[game.name].select do |contestant|
+      contestant.spending_money >= game.cost 
+    end
+  end
 end

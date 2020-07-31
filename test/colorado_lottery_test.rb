@@ -90,4 +90,19 @@ class ColoradoLotteryTest < MiniTest::Test
     @lottery.register_contestant(@grace, @pick_4)
     assert_equal ({"Pick 4" => [@alexander, @grace], "Mega Millions" => [@alexander, @frederick, @winston, @grace], "Cash 5" => [@winston, @grace]}), @lottery.registered_contestants
   end
+
+  def test_it_can_list_eligible_contestants
+    @lottery.register_contestant(@alexander, @pick_4)
+    @lottery.register_contestant(@alexander, @mega_millions)
+    @lottery.register_contestant(@frederick, @mega_millions)
+    @lottery.register_contestant(@winston, @cash_5)
+    @lottery.register_contestant(@winston, @mega_millions)
+    @lottery.register_contestant(@grace, @mega_millions)
+    @lottery.register_contestant(@grace, @cash_5)
+    @lottery.register_contestant(@grace, @pick_4)
+
+    assert_equal [@alexander, @grace], @lottery.eligible_contestants(@pick_4)
+    assert_equal [@winston, @grace], @lottery.eligible_contestants(@cash_5)
+    assert_equal [@alexander, @frederick, @winston, @grace], @lottery.eligible_contestants(@mega_millions)
+  end
 end
