@@ -23,6 +23,6 @@ class Contestant
   end
 
   def charge(amount)
-    @spending_money - amount
+    @spending_money = @spending_money - amount
   end
 end

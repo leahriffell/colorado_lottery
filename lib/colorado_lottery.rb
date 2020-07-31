@@ -4,7 +4,7 @@ class ColoradoLottery
   def initialize
     @registered_contestants = Hash.new {|h, k| h[k] = []}
     @winners = []
-    @current_contestants = {}
+    @current_contestants = Hash.new {|h, k| h[k] = []}
   end
 
   def interested_and_18?(contestant, game)
@@ -27,4 +27,13 @@ class ColoradoLottery
       contestant.spending_money >= game.cost 
     end
   end
+
+  def charge_contestants(game)
+    eligible_contestants(game).each do |contestant|
+      contestant.charge(game.cost)
+      @current_contestants[game] << contestant.full_name
+    end
+  end
+
+  #  current_contestants are lists of contestant names who have been charged, organized by game.
 end
