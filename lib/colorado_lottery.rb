@@ -1,3 +1,5 @@
+require 'date'
+
 class ColoradoLottery
   attr_reader :registered_contestants, :winners, :current_contestants
   
@@ -5,6 +7,7 @@ class ColoradoLottery
     @registered_contestants = Hash.new {|h, k| h[k] = []}
     @winners = []
     @current_contestants = Hash.new {|h, k| h[k] = []}
+    @date = Date.today
   end
 
   def interested_and_18?(contestant, game)
@@ -35,5 +38,7 @@ class ColoradoLottery
     end
   end
 
-  #  current_contestants are lists of contestant names who have been charged, organized by game.
+  def draw_winners
+    @date.strftime("%Y-%m-%e")
+  end
 end

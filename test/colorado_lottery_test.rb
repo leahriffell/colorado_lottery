@@ -127,5 +127,12 @@ class ColoradoLotteryTest < MiniTest::Test
     assert_equal 4, @winston.spending_money
     assert_equal 5, @alexander.spending_money
     assert_equal 15, @frederick.spending_money
+
+    @lottery.charge_contestants(@pick_4)
+    assert_equal ({@cash_5 => ["Winston Churchill", "Grace Hopper"], @mega_millions => ["Alexander Aigades", "Frederick Douglas", "Grace Hopper"], @pick_4 => ["Alexander Aigades", "Grace Hopper"]}), @lottery.current_contestants
+  end
+
+  def test_it_can_return_date_of_drawing
+    assert_equal "2020-07-31", @lottery.draw_winners`
   end
 end
