@@ -38,7 +38,16 @@ class ColoradoLottery
     end
   end
 
-  def draw_winners
+  def date_of_drawing
     @date.strftime("%Y-%m-%e")
+  end
+
+  def draw_winners
+    @registered_contestants.each do |game, contestants|
+      result = Hash.new
+      result[contestants.sample.full_name] = game
+      @winners << result 
+    end
+    date_of_drawing
   end
 end
